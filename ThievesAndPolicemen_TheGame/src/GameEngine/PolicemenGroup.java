@@ -32,7 +32,7 @@ public class PolicemenGroup extends Group
 		
 		for(int i = 0; i < mg._numberOfPolicemen; i++)
 		{			
-			for(int j = 0; j < 5; j++)
+			for(int j = 0; j < 2; j++)
 			{
 				r = random.nextInt(5);
 				

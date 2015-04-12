@@ -64,6 +64,12 @@ public class Board extends Canvas {
     private Image gateway;
     private Image obstacle;
     private Image policeman;
+    private Image policeman1;
+    private Image policeman2;
+    private Image policeman3;
+    private Image policeman4;
+    private Image policeman5;
+    
     private Image policemanArea;
     private Image thief;
     private Image moveStop;
@@ -82,7 +88,7 @@ public class Board extends Canvas {
         super(shell, SWT.DOUBLE_BUFFERED);
         
         m = new MainGame();
-        PG = new MyPolicemenGroup(m); // PolicemenGroup
+        PG = new PolicemenGroup(m); // PolicemenGroup
         TG = new MyThiefGroup(m); // ThiefGroup
         Groups = new ArrayList<Group>();
         Groups.add(PG);
@@ -112,6 +118,21 @@ public class Board extends Canvas {
         
         ImageData policemanImageData = new ImageData("./policeman.png");
         policeman = new Image(display, policemanImageData);
+        
+        ImageData policeman1ImageData = new ImageData("./policeman1.png");
+        policeman1 = new Image(display, policeman1ImageData);
+        
+        ImageData policeman2ImageData = new ImageData("./policeman2.png");
+        policeman2 = new Image(display, policeman2ImageData);
+        
+        ImageData policeman3ImageData = new ImageData("./policeman3.png");
+        policeman3 = new Image(display, policeman3ImageData);
+        
+        ImageData policeman4ImageData = new ImageData("./policeman4.png");
+        policeman4 = new Image(display, policeman4ImageData);
+        
+        ImageData policeman5ImageData = new ImageData("./policeman5.png");
+        policeman5 = new Image(display, policeman5ImageData);
         
         ImageData policemanAreaImageData = new ImageData("./policemanArea.png");
         policemanArea = new Image(display, policemanAreaImageData);
@@ -271,10 +292,41 @@ public class Board extends Canvas {
     			
     			if(!someFlag)
     			{
-	    			if(m._board[i][j] == 2)
+	    			if(m._board[i][j] == 2) 
 	    			{
-	    				e.gc.drawImage(policeman, x[z], y[z]);
-	    				
+	    				int k = 1;
+	    				for(Position p : m.PolicemenDict.values())
+	    				{
+	    					if(p.x == i && p.y == j)
+	    					{
+	    						if(k == 1)
+	    						{
+		    						e.gc.drawImage(policeman1, x[z], y[z]);
+		    						break;
+	    						}
+	    						if(k == 2)
+	    						{
+		    						e.gc.drawImage(policeman2, x[z], y[z]);
+		    						break;
+	    						}
+	    						if(k == 3)
+	    						{
+		    						e.gc.drawImage(policeman3, x[z], y[z]);
+		    						break;
+	    						}
+	    						if(k == 4)
+	    						{
+		    						e.gc.drawImage(policeman4, x[z], y[z]);
+		    						break;
+	    						}
+	    						if(k == 5)
+	    						{
+		    						e.gc.drawImage(policeman5, x[z], y[z]);
+		    						break;
+	    						}
+	    					}
+	    					k++;
+	    				}
 	    				
 	    				if(m._board[i - 1][j] == 0)
 	    				{
@@ -380,17 +432,39 @@ public class Board extends Canvas {
 	    		{
 	    			if(move == 5)
 	    				e.gc.drawImage(moveStop, xMoves[z], yMoves[z]);
-	    			if(move == 4)
+	    			else if(move == 4)
 	    				e.gc.drawImage(moveLeft, xMoves[z], yMoves[z]);
-	    			if(move == 8)
+	    			else if(move == 8)
 	    				e.gc.drawImage(moveUp, xMoves[z], yMoves[z]);
-	    			if(move == 6)
+	    			else if(move == 6)
 	    				e.gc.drawImage(moveRight, xMoves[z], yMoves[z]);
-	    			if(move == 2)
+	    			else if(move == 2)
 	    				e.gc.drawImage(moveDown, xMoves[z], yMoves[z]);
+	    			else
+	    				e.gc.drawImage(moveStop, xMoves[z], yMoves[z]);
+	    				
+	    				
 	    			z++;
 	    		}
+	    		if(moves.size() != 5)
+	    		{
+	    			for(int i = 0; i < 5 - moves.size(); i++)
+	    			{
+	    				e.gc.drawImage(moveStop, xMoves[z], yMoves[z]);
+	    				z++;
+	    			}
+	    		}
     		}
+    		else if(moves == null)
+    		{
+    			for(int i = 0; i < 5; i++)
+    			{
+    				e.gc.drawImage(moveStop, xMoves[z], yMoves[z]);
+    				z++;
+    			}
+    		}
+
+    		
 		}
     	
     	String msg = "Punkty Policjantów: " + PolicemenPoints;
@@ -459,7 +533,7 @@ public class Board extends Canvas {
     		else
        	 		msg = "P" + (numer++);
 
-            Font font = new Font(e.display, "Consolas",
+            Font font = new Font(e.display, "Helvetica",
                     12, SWT.NORMAL);
             Color black = new Color(shell.getDisplay(),
                     0, 0, 0);
@@ -477,17 +551,39 @@ public class Board extends Canvas {
 	    		{
 	    			if(move == 5)
 	    				e.gc.drawImage(moveStop, xMoves[z], yMoves[z]);
-	    			if(move == 4)
+	    			else if(move == 4)
 	    				e.gc.drawImage(moveLeft, xMoves[z], yMoves[z]);
-	    			if(move == 8)
+	    			else if(move == 8)
 	    				e.gc.drawImage(moveUp, xMoves[z], yMoves[z]);
-	    			if(move == 6)
+	    			else if(move == 6)
 	    				e.gc.drawImage(moveRight, xMoves[z], yMoves[z]);
-	    			if(move == 2)
+	    			else if(move == 2)
 	    				e.gc.drawImage(moveDown, xMoves[z], yMoves[z]);
+	    			else
+	    				e.gc.drawImage(moveStop, xMoves[z], yMoves[z]);
+	    				
+	    				
 	    			z++;
 	    		}
+	    		if(moves.size() != 5)
+	    		{
+	    			for(int i = 0; i < 5 - moves.size(); i++)
+	    			{
+	    				e.gc.drawImage(moveStop, xMoves[z], yMoves[z]);
+	    				z++;
+	    			}
+	    		}
     		}
+    		else if(moves == null)
+    		{
+    			for(int i = 0; i < 5; i++)
+    			{
+    				e.gc.drawImage(moveStop, xMoves[z], yMoves[z]);
+    				z++;
+    			}
+    		}
+
+    		
 		}
     	
     	String msg = "Punkty Policjantów: " + PolicemenPoints;
