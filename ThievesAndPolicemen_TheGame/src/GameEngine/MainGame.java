@@ -1,6 +1,6 @@
 // 1. Odbicia furtek
-// 2. Odbicia przeszkód
-// 3. Zjadanie siê furtek
+// 2. Odbicia przeszkÃ³d
+// 3. Zjadanie siÃª furtek
 
 package GameEngine;
 
@@ -16,7 +16,7 @@ import java.util.concurrent.Future;
 
 public class MainGame
 {
-	private Random random = new	Random();
+	private Random random = new	Random(1410);
 	public byte[][] _board = null;
 	private static final byte _n = 20;
 	public static final byte _ne = _n + 2;
@@ -44,9 +44,9 @@ public class MainGame
 	private static final byte _lengthOfWall = 4;
 	
 	//prawdopodobienstwo ruchu furtki
-	private static final float _probabilityFR = 0.5f;
+	private static final float _probabilityFR = 0.5f;//0.5f;
 	//prawdopodobienstwo zmiany kierunku furtki
-	private static final float _probabilityFZ = 0.01f;
+	private static final float _probabilityFZ = 0.01f;//0.01f;
 	
 	//prawdopodobienstwo ruchu sciany
 	private static final float _probabilitySR = 0.75f;
@@ -77,7 +77,7 @@ public class MainGame
 		for (int i = 0; i < _numberOfGateways; i++)
 		{
 			VerticalOrHorizontalGateway = random.nextInt(2); // pion(0) czy poziom(1)
-			SideOfGateway = random.nextInt(2); // góra(0)-dó³(1) / lewo(0)-prawo(1) -- w zale¿noœci od poziom / pion
+			SideOfGateway = random.nextInt(2); // gÃ³ra(0)-dÃ³Â³(1) / lewo(0)-prawo(1) -- w zaleÂ¿noÅ“ci od poziom / pion
 			PositionOfGateway = random.nextInt(_ne - _lengthOfGateway); // numer kolumny / wiersza
 			
 			ElementPosition GatewayObject = null;
@@ -316,7 +316,7 @@ public class MainGame
 				
 				if(GatewaysDict.get(i).ClockwiseOrAntiClockwise == true) // 
 				{
-					if(RandomValue > _probabilityFZ) // nie zmienia - idzie zgodnie ze wskazówkami
+					if(RandomValue > _probabilityFZ) // nie zmienia - idzie zgodnie ze wskazÃ³wkami
 					{
 						if (GatewaysDict.get(i).IsHorizontalOrIsVertical == true) // furtka pozioma
 						{
@@ -364,12 +364,12 @@ public class MainGame
 						}
 								
 					}
-					else // zmieni - idzie przeciwnie do wskazówek
+					else // zmieni - idzie przeciwnie do wskazÃ³wek
 						GatewaysDict.get(i).ClockwiseOrAntiClockwise = false;
 				}
 				else
 				{
-					if(RandomValue > _probabilityFZ) // nie zmienia - idzie przeciwnie do wskazówek
+					if(RandomValue > _probabilityFZ) // nie zmienia - idzie przeciwnie do wskazÃ³wek
 					{
 						if (GatewaysDict.get(i).IsHorizontalOrIsVertical == true) // furtka pozioma
 						{
@@ -417,7 +417,7 @@ public class MainGame
 						}
 								
 					}
-					else // zmieni - idzie zgodnie ze wskazówkami
+					else // zmieni - idzie zgodnie ze wskazÃ³wkami
 						GatewaysDict.get(i).ClockwiseOrAntiClockwise = true;
 				}
 			}
@@ -433,7 +433,7 @@ public class MainGame
 			{
 				RandomBool = random.nextBoolean();
 				
-				if(ObstaclesDict.get(i).ClockwiseOrAntiClockwise == true) // jesli klocek porusza siê w prawo albo w górê
+				if(ObstaclesDict.get(i).ClockwiseOrAntiClockwise == true) // jesli klocek porusza siÃª w prawo albo w gÃ³rÃª
 				{
 					if(RandomValue > _probabilitySZ) // nie zmienia
 					{
@@ -476,9 +476,9 @@ public class MainGame
 										ObstaclesDict.get(i).y++;
 								}
 							}
-							else // poziomy klocek - ruch w górê
+							else // poziomy klocek - ruch w gÃ³rÃª
 							{
-								if((ObstaclesDict.get(i).x) == 1) // Idzie w dó³ bo odbija
+								if((ObstaclesDict.get(i).x) == 1) // Idzie w dÃ³Â³ bo odbija
 								{
 									boolean canMove = true;
 									for(Person p : PolicemenDict.keySet())
@@ -508,7 +508,7 @@ public class MainGame
 									
 									ObstaclesDict.get(i).ClockwiseOrAntiClockwise = false;
 								}
-								else // idzie normalnie w górê
+								else // idzie normalnie w gÃ³rÃª
 								{
 									boolean canMove = true;
 									//DAC FORA po PERSON 
@@ -604,9 +604,9 @@ public class MainGame
 										ObstaclesDict.get(i).y++;
 								}
 							}
-							else // pionowy klocek - ruch w górê
+							else // pionowy klocek - ruch w gÃ³rÃª
 							{
-								if((ObstaclesDict.get(i).x) == 1) // Idzie w dó³ bo odbija
+								if((ObstaclesDict.get(i).x) == 1) // Idzie w dÃ³Â³ bo odbija
 								{
 									boolean canMove = true;
 									for(Person p : PolicemenDict.keySet())
@@ -624,7 +624,7 @@ public class MainGame
 									
 									ObstaclesDict.get(i).ClockwiseOrAntiClockwise = false;
 								}
-								else // Idzie w normalnie w górê
+								else // Idzie w normalnie w gÃ³rÃª
 								{
 									boolean canMove = true;
 									for(Person p : PolicemenDict.keySet())
@@ -651,7 +651,7 @@ public class MainGame
 							GatewaysDict.get(i).ClockwiseOrAntiClockwise = true;
 					}
 				}
-				else // jesli klocek porusza siê w lewo albo w dó³  ///////////////////////////////////////////////////////////////////////////////////////////
+				else // jesli klocek porusza siÃª w lewo albo w dÃ³Â³  ///////////////////////////////////////////////////////////////////////////////////////////
 				{
 					if(RandomValue > _probabilitySZ) // nie zmienia
 					{
@@ -694,9 +694,9 @@ public class MainGame
 										ObstaclesDict.get(i).y--;
 								}
 							}
-							else // poziomy klocek - ruch w dó³
+							else // poziomy klocek - ruch w dÃ³Â³
 							{
-								if((ObstaclesDict.get(i).x) == (_n - 1)) // Idzie w górê bo odbija
+								if((ObstaclesDict.get(i).x) == (_n - 1)) // Idzie w gÃ³rÃª bo odbija
 								{
 									boolean canMove = true;
 									for(Person p : PolicemenDict.keySet())
@@ -726,7 +726,7 @@ public class MainGame
 									
 									ObstaclesDict.get(i).ClockwiseOrAntiClockwise = true;
 								}
-								else // idzie normalnie w dó³
+								else // idzie normalnie w dÃ³Â³
 								{
 									boolean canMove = true;
 									for(Person p : PolicemenDict.keySet())
@@ -820,9 +820,9 @@ public class MainGame
 										ObstaclesDict.get(i).y--;
 								}
 							}
-							else // pionowy klocek - ruch w dó³
+							else // pionowy klocek - ruch w dÃ³Â³
 							{
-								if((ObstaclesDict.get(i).x) == (_n - _lengthOfWall + 1)) // Idzie w górê bo odbija
+								if((ObstaclesDict.get(i).x) == (_n - _lengthOfWall + 1)) // Idzie w gÃ³rÃª bo odbija
 								{
 									boolean canMove = true;
 									for(Person p : PolicemenDict.keySet())
@@ -840,7 +840,7 @@ public class MainGame
 									
 									ObstaclesDict.get(i).ClockwiseOrAntiClockwise = true;
 								}
-								else // Idzie w normalnie w dó³
+								else // Idzie w normalnie w dÃ³Â³
 								{
 									boolean canMove = true;
 									for(Person p : PolicemenDict.keySet())
@@ -1010,8 +1010,38 @@ public class MainGame
 
 		if(x == 0 || x == _ne - 1 || y == 0 || y == _ne - 1)
 		{
-			move = false;
-			return move;
+			boolean checkGateway = false;
+			if(person instanceof Thief)
+			{
+				for(int i = 0; i < _numberOfGateways; i++)
+				{
+					if(GatewaysDict.get(i).IsHorizontalOrIsVertical == true)
+					{
+						for(int j = 0; j < _lengthOfGateway; j++)
+						{
+							if(GatewaysDict.get(i).x == x && GatewaysDict.get(i).y + j == y)
+							{
+								checkGateway = true;
+							}
+						}
+					}
+					else
+					{
+						for(int j = 0; j < _lengthOfGateway; j++)
+						{
+							if(GatewaysDict.get(i).y == y && GatewaysDict.get(i).x + j == x)
+							{
+								checkGateway = true;
+							}
+						}
+					}
+				}
+			}
+			if(checkGateway == false)
+			{
+				move = false;
+				return move;
+			}
 		}
 		
 		for(int j = 0; j < _numerOfWalls; j++)

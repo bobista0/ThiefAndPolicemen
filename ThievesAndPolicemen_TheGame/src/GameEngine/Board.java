@@ -88,7 +88,7 @@ public class Board extends Canvas {
         super(shell, SWT.DOUBLE_BUFFERED);
         
         m = new MainGame();
-        PG = new PolicemenGroup(m); // PolicemenGroup
+        PG = new MyPolicemenGroup(m); // PolicemenGroup
         TG = new MyThiefGroup(m); // ThiefGroup
         Groups = new ArrayList<Group>();
         Groups.add(PG);

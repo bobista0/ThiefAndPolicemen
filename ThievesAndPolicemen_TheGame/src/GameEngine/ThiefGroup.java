@@ -12,7 +12,7 @@ public class ThiefGroup  extends Group
 	{
 		super(mg);
 		ThiefList = new ArrayList<Thief>();
-
+		
 		for(Person t : mg.Persons.keySet())
 		{
 			if(t instanceof Thief)
